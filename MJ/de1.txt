@@ -1,0 +1,45 @@
+1) SELECT Expressions
+
+Allows retrieval of data and computed values, not just raw columns (e.g., calculations, functions, or derived values).
+
+2) Aliases
+
+Provide temporary, user-friendly names for columns or tables to make results and queries more readable.
+
+3) DISTINCT
+
+Ensures that duplicate rows are eliminated from the result set, returning only unique records.
+
+4) SELECT * vs Explicit Columns
+
+SELECT * fetches all columns, which may include unnecessary data and reduce efficiency.
+
+Explicitly listing columns improves performance, clarity, and maintainability.
+
+5) FROM Sources (Tables, Views, Subqueries)
+
+Data can be retrieved from different sources:
+
+Tables (actual stored data)
+
+Views (predefined queries)
+
+Subqueries (inline queries used as temporary sources)
+
+6) WHERE Filtering (Predicates & Short-Circuiting)
+
+Used to restrict rows based on conditions.
+
+Predicates are logical expressions (e.g., comparisons, ranges, patterns).
+
+Short-circuiting means evaluation stops once the truth value is determined, improving efficiency.
+
+7) EXCEPT and REPLACE in SELECT (Schema Manipulation)
+
+EXCEPT returns rows in one result set that are not present in another.
+
+REPLACE modifies values in output or adjusts schema representations by substituting text or patterns.
+
+8) LIMIT / TOP
+
+Restrict the number of rows returned. Useful for sampling, pagination, or testing queries on large datasets.
