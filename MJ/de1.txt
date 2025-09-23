@@ -43,3 +43,12 @@ REPLACE modifies values in output or adjusts schema representations by substitut
 8) LIMIT / TOP
 
 Restrict the number of rows returned. Useful for sampling, pagination, or testing queries on large datasets.
+
+
+
+queries:
+
+SELECT DISTINCT department FROM employees;
+SELECT name, salary FROM employees WHERE salary > 50000;
+SELECT name, salary * 1.1 AS increased_salary FROM employees;
+select * except(first_name,last_name) from bigquery_de.employees;
