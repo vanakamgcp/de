@@ -1,0 +1,230 @@
+🔹 1. Comparison Operators
+==================================
+
+-- Equal to
+SELECT name FROM employees WHERE age = 25;
+
+-- Not equal to
+SELECT name FROM employees WHERE city != 'Delhi';
+
+-- Less than
+SELECT name FROM employees WHERE salary < 50000;
+
+-- Less than or equal to
+SELECT name FROM employees WHERE salary <= 50000;
+
+-- Greater than
+SELECT name FROM employees WHERE marks > 80;
+
+-- Greater than or equal to
+SELECT name FROM employees WHERE age >= 30;
+
+-- Between
+SELECT name FROM employees WHERE age BETWEEN 18 AND 25;
+
+-- In list
+SELECT name FROM employees WHERE dept IN ('IT', 'HR');
+
+-- Not in list
+SELECT name FROM employees WHERE city NOT IN ('Chennai', 'Mumbai');
+
+-- IS NULL
+SELECT name FROM employees WHERE email IS NULL;
+
+-- IS NOT NULL
+SELECT name FROM employees WHERE email IS NOT NULL;
+
+🔹 2. Logical Operators
+=============================
+
+
+-- AND
+SELECT name FROM employees WHERE age > 25 AND dept = 'IT';
+
+-- OR
+SELECT name FROM employees WHERE dept = 'HR' OR dept = 'Finance';
+
+-- NOT
+SELECT name FROM employees WHERE NOT (marks > 50);
+
+
+
+🔹 3. Arithmetic Operators
+============================
+
+
+-- Addition
+SELECT name, salary + 5000 AS new_salary FROM employees;
+
+-- Subtraction
+SELECT name, salary - 2000 AS reduced_salary FROM employees;
+
+-- Multiplication
+SELECT name, salary * 1.1 AS bonus_salary FROM employees;
+
+-- Division
+SELECT name, salary / 12 AS monthly_salary FROM employees;
+
+-- Modulo
+SELECT name, marks % 5 AS remainder FROM employees;
+
+🔹 4. String Operators
+===============================
+
+
+-- Concatenation
+SELECT name || ' works in ' || dept AS employee_info FROM employees;
+
+-- LIKE
+SELECT name FROM employees WHERE name LIKE 'A%';  -- starts with A
+
+-- NOT LIKE
+SELECT name FROM employees WHERE name NOT LIKE '%test%';
+
+-- STARTS_WITH
+SELECT name FROM employees WHERE STARTS_WITH(city, 'New');
+
+-- ENDS_WITH
+SELECT email FROM employees WHERE ENDS_WITH(email, '.com');
+
+
+
+🔹 5. Bitwise Operators
+=================================
+
+(Work only with integers like marks, emp_id)
+
+-- Bitwise AND
+SELECT emp_id, emp_id & 3 AS result FROM employees;
+
+-- Bitwise OR
+SELECT emp_id, emp_id | 2 AS result FROM employees;
+
+-- Bitwise XOR
+SELECT emp_id, emp_id ^ 5 AS result FROM employees;
+
+-- Bitwise NOT
+SELECT emp_id, ~emp_id AS result FROM employees;
+
+-- Left shift
+SELECT emp_id, emp_id << 1 AS result FROM employees;
+
+-- Right shift
+SELECT emp_id, emp_id >> 1 AS result FROM employees;
+
+🔹 1. LIKE
+
+Performs case-sensitive pattern matching.
+
+Wildcards:
+
+% → matches any sequence of characters
+
+_ → matches a single character
+
+Example: Find names starting with “A”
+
+SELECT name
+FROM employees
+WHERE name LIKE 'A%';
+
+
+✅ Result: Alice, Ananya
+❌ Won’t return alice if lowercase.
+
+🔹 2. ILIKE
+
+Works like LIKE but case-insensitive.
+
+Example: Find cities starting with “new” (ignore case)
+
+SELECT city
+FROM employees
+WHERE city ILIKE 'new%';
+
+
+✅ Result: New York, New Delhi
+
+🔹 3. REGEXP_CONTAINS(expr, regex)
+
+Returns TRUE if the string matches the regex.
+
+Example: Find employees with Gmail accounts
+
+SELECT name, email
+FROM employees
+WHERE REGEXP_CONTAINS(email, r'@gmail\.com$');
+
+
+✅ Result:
+
+alice@gmail.com
+
+ananya@gmail.com
+
+Explanation:
+
+@gmail\.com$ → matches strings ending with @gmail.com
+
+$ → ensures match at the end
+
+🔹 4. REGEXP_EXTRACT(expr, regex)
+
+Returns the first substring that matches the regex pattern.
+
+Example: Extract first letter of each name
+
+SELECT name, REGEXP_EXTRACT(name, r'^[A-Z]') AS first_letter
+FROM employees;
+
+
+✅ Result:
+
+Alice → A
+
+Bob → B
+
+Ananya → A
+
+Explanation:
+
+^ = beginning of string
+
+[A-Z] = first uppercase letter
+
+
+
+=====>Practiced queries:
+
+select * except(first_name,last_name) from bigquery_de.employees;
+
+select * from bigquery_de.employees;
+
+SELECT first_name,salary AS new_salary FROM bigquery_de.employees;
+
+select first_name as StartA from bigquery_de.employees where first_name like 'A%';
+
+select first_name from `bigquery_de.employees` where starts_with(first_name,'B');
+
+select first_name,salary from `bigquery_de.employees` where salary between 5000 and 10000;
+
+select first_name,salary from `bigquery_de.employees` where salary>=5000 and salary<=10000;
+
+
+select first_name,last_name from `bigquery_de.employees` where last_name is not null;
+
+
+select first_name,last_name from `bigquery_de.employees` where last_name is null;
+
+
+select first_name from `bigquery_de.employees` where not(salary>10000);
+
+
+SELECT first_name, REGEXP_EXTRACT(first_name, r'^[A-Z]') AS first_letter
+FROM bigquery_de.employees;
+
+
+SELECT phone_number, REGEXP_REPLACE(phone_number, r'[^0-9]', '') AS clean_phone
+FROM bigquery_de.employees;
+
+
